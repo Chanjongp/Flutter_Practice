@@ -5,10 +5,22 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: MyHomePage(title: 'Flutter Demo Home Page'));
+    return MaterialApp(home: MyHomePage(title: 'Flutter Demo Home Page'));
+  }
+
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          color: color,
+          size: 30,
+        ),
+        Text(label, style: TextStyle(color: color, fontSize: 25))
+      ],
+    );
   }
 }
 
@@ -21,32 +33,77 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('You have pushed the button this many times'),
-              Text('$_counter', style: Theme.of(context).textTheme.headline4)
-            ],
-          ),
+    var titleSection = Row(
+      // mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(padding: EdgeInsets.all(20.0)),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text("Oeschinen Lake Campground",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            Text("Kandersteg, Switzerland",
+                style: TextStyle(color: Colors.grey, fontSize: 20)),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'increment',
-            child: Icon(Icons.add)));
-  }
+        Padding(padding: EdgeInsets.all(50.0)),
+        Icon(Icons.star, size: 25, color: Colors.red),
+        Text(
+          '41',
+          style: TextStyle(fontSize: 20),
+        )
+      ],
+    );
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-      if (_counter == 40) {
-        _counter = 0;
-      }
-    });
+    var buttonSection = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Column(children: <Widget>[
+          Icon(Icons.call, size: 30, color: Colors.lightBlue),
+          Text('Call', style: TextStyle(color: Colors.lightBlue))
+        ]),
+        Padding(padding: EdgeInsets.all(25.0)),
+        Column(children: <Widget>[
+          Icon(Icons.near_me, size: 30, color: Colors.lightBlue),
+          Text('ROUTE', style: TextStyle(color: Colors.lightBlue)),
+        ]),
+        Padding(padding: EdgeInsets.all(30.0)),
+        Column(children: <Widget>[
+          Icon(Icons.share, size: 30, color: Colors.lightBlue),
+          Text('SHARE', style: TextStyle(color: Colors.lightBlue))
+        ]),
+      ],
+    );
+
+    var textSection = Container(
+        child: Text(
+            'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+            'Alps. Situated 1,578 meters above sea level, it is one of the '
+            'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+            'half-hour walk through pastures and pine forest, leads you to the '
+            'lake, which warms to 20 degrees Celsius in the summer. Activities '
+            'enjoyed here include rowing, and riding the summer toboggan run.',
+            style: TextStyle(fontSize: 18)),
+        padding: EdgeInsets.all(40.0));
+
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Image.network(
+              "https://i1.wp.com/blog.signifykorea.com/wp-content/uploads/2020/02/%EC%BA%A0%ED%95%91.jpg?fit=1400%2C933&ssl=1",
+              height: 400,
+              width: 600,
+              fit: BoxFit.cover),
+          // Padding(padding: EdgeInsets.all(10.0)),
+          titleSection,
+          // Padding(padding: EdgeInsets.all(10.0)),
+          buttonSection,
+          // Padding(padding: EdgeInsets.all(10.0)),
+          textSection,
+        ],
+      ),
+    );
   }
 }
