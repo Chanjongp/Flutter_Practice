@@ -24,12 +24,23 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      // ),
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: <Widget>[
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                child: Text(
+                  '메모메모',
+                  style: TextStyle(fontSize: 36, color: Colors.blue),
+                ),
+              )
+            ],
+          ),
           ...loadMemo(),
         ],
       ),
@@ -48,8 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> loadMemo() {
     List<Widget> memoList = [];
-    memoList.add(Container(color: Colors.red, height: 1000));
-    memoList.add(Container(color: Colors.amber, height: 1000));
+    memoList.add(Container(color: Colors.red, height: 200));
+    memoList.add(Container(color: Colors.amber, height: 200));
     return memoList;
   }
 }
